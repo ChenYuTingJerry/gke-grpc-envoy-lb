@@ -1,0 +1,13 @@
+apiVersion: skaffold/v2beta15
+kind: Config
+metadata:
+  name: echo-grpc
+build:
+  artifacts:
+  - image: echo-grpc
+  tagPolicy:
+    sha256: {}
+deploy:
+  kubectl:
+    manifests:
+    - deployments/*.yaml

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-grpc
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: echo-grpc
+  template:
+    metadata:
+      labels:
+        app: echo-grpc
+    spec:
+      containers:
+      - name: echo-grpc
+        image: echo-grpc
+        ports:
+        - containerPort: 8081
+        env:
+        - name: PORT
+          value: "8081"
+        resources:
+          requests:
+            cpu: 50m
+            ephemeral-storage: 128Mi
+            memory: 128Mi
+        readinessProbe:
+          exec:
+            command: ["/bin/grpc_health_probe", "-addr=:8081"]
