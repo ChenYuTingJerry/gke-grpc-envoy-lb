@@ -1,0 +1,12 @@
+version: '3'
+services:
+  http-service:
+    restart: always
+    image: http-service:latest
+    build:
+      context: http-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../configs:/app/configs
