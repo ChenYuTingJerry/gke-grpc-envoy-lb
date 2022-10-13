@@ -1,3 +1,17 @@
+// Copyright 2021 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 package main
 
 import (
@@ -6,11 +20,13 @@ import (
 	"os"
 
 	"github.com/sirupsen/logrus"
+
+	"github.com/googlecloudplatform/grpc-gke-nlb-tutorial/echo-grpc/api"
+	"github.com/googlecloudplatform/grpc-gke-nlb-tutorial/echo-grpc/health"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health/grpc_health_v1"
-
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/echo-grpc/health"
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/echo-grpc/proto"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
@@ -23,9 +39,11 @@ func main() {
 		log.Fatalf("Failed to listen: %v", err)
 	}
 	grpcServer := grpc.NewServer()
-	proto.RegisterEchoServiceServer(grpcServer, &proto.Server{})
+	api.RegisterEchoServer(grpcServer, &api.Server{})
 	grpc_health_v1.RegisterHealthServer(grpcServer, &health.Server{})
-	logrus.Infof("Listening for Echo on port %s", port)
+	reflection.Register(grpcServer)
+	log.Printf("Listening for Echo on port %s", port)
+	logrus.Info("Handling Echo request [%v] with context %v")
 	if err := grpcServer.Serve(listener); err != nil {
 		log.Fatalf("Failed to serve: %v", err)
 	}

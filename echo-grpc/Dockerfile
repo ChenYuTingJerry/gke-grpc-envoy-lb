@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM golang:1.17 as build
+FROM golang:1.16 as build
 
 RUN apt-get -y update && \
     apt-get -y install unzip
@@ -43,6 +43,8 @@ RUN CGO_ENABLED=0 go build -o /bin/echo-grpc .
 
 FROM alpine:3.13.2
 
+ENV GRPC_GO_LOG_VERBOSITY_LEVEL=2
+ENV GRPC_GO_LOG_SEVERITY_LEVEL=debug
 ENV PORT=8080
 EXPOSE 8080
 

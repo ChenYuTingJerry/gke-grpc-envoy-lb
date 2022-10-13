@@ -12,16 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-module github.com/googlecloudplatform/grpc-gke-nlb-tutorial/echo-grpc
+syntax = "proto3";
 
-go 1.16
+option go_package = "github.com/googlecloudplatform/grpc-gke-nlb-tutorial/echo-grpc/api";
 
-require (
-	github.com/sirupsen/logrus v1.8.1
-	golang.org/x/net v0.0.0-20220107192237-5cfca573fb4d // indirect
-	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
-	golang.org/x/text v0.3.7 // indirect
-	google.golang.org/genproto v0.0.0-20220107163113-42d7afdf6368 // indirect
-	google.golang.org/grpc v1.43.0
-	google.golang.org/protobuf v1.27.1
-)
+package api;
+
+service Echo {
+  rpc Echo (EchoRequest) returns (EchoResponse) {}
+}
+
+message EchoRequest {
+  string content = 1;
+}
+
+message EchoResponse {
+  string content = 1;
+}
