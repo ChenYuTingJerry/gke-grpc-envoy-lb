@@ -10,7 +10,7 @@ _term() {
   while [ $stoped -eq 0 ]
   do
     sec=$((sec + 1))
-    if [ ! -e /proc/"$child" ]; then
+    if [ ! -e /proc/$child ]; then
       stoped=1
     else
       if [ $sec -eq 10 ]; then
@@ -20,18 +20,17 @@ _term() {
     fi
   done
   # wait is used to capture the return code
-  wait "$child"
+  wait $child
   exit_status=$?
   echo graceful shut down with code $exit_status
   exit 0
 }
 trap _term TERM
 
-
+# Run app with flags environment variable
 cmd="${WORK_DIR}/main"
 echo -----------------------------------------------------
-
-date
+echo $(date)
 $cmd &
 child=$!
 # first wait will be interrupted be a signal

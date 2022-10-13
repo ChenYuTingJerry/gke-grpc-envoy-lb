@@ -1,0 +1,8 @@
+apiVersion: skaffold/v2beta15
+kind: Config
+metadata:
+  name: gke-grpc-envoy-lb
+requires:
+- path: ./echo-grpc
+- path: ./http-service
+- path: ./envoy

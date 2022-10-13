@@ -3,7 +3,7 @@ package injector
 import (
 	"github.com/google/wire"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/app/engine"
+	"http-service/internal/app/engine"
 )
 
 var InjectorSet = wire.NewSet(wire.Struct(new(Injector), "*"))

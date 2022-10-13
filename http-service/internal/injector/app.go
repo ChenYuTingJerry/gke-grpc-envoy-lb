@@ -3,7 +3,7 @@ package injector
 import (
 	log "github.com/sirupsen/logrus"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/configs"
+	"http-service/configs"
 )
 
 func Run() {

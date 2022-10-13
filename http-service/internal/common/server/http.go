@@ -1,9 +1,9 @@
-package http
+package server
 
 import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/domain/model/errs"
+	"http-service/internal/lib/errs"
 )
 
 type FailResult struct {

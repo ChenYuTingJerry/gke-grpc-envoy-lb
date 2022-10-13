@@ -3,7 +3,7 @@ package demo
 import (
 	"context"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/domain/repository/demo"
+	"http-service/internal/domain/repository/demo"
 )
 
 type impl struct {
@@ -16,6 +16,6 @@ func ProvideDispatcher(demoRepo demo.Repository) Dispatcher {
 	}
 }
 
-func (i *impl) GetDemo(ctx context.Context) (interface{}, error) {
+func (i impl) GetDemo(ctx context.Context) (interface{}, error) {
 	return i.demoRepo.GetDemo(ctx)
 }

@@ -7,19 +7,19 @@
 package injector
 
 import (
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/app/router"
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/client/grpc"
-	demo2 "github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/dispatcher/demo"
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/domain/repository/demo"
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/injector/api"
-	demo4 "github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/receiver/demo"
-	demo3 "github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/translator/demo"
+	"http-service/internal/app/router"
+	"http-service/internal/common/client"
+	demo2 "http-service/internal/dispatcher/demo"
+	"http-service/internal/domain/repository/demo"
+	"http-service/internal/injector/api"
+	demo4 "http-service/internal/receiver/demo"
+	demo3 "http-service/internal/translator/demo"
 )
 
 // Injectors from wire.go:
 
 func BuildInjector() (*Injector, func(), error) {
-	echoClient, cleanup, err := grpc.NewEchoGrpcClient()
+	echoClient, cleanup, err := client.NewEchoGrpcClient()
 	if err != nil {
 		return nil, nil, err
 	}

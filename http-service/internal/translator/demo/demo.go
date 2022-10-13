@@ -5,8 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/domain/model/errs"
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/translator"
+	"http-service/internal/lib/errs"
+	"http-service/internal/translator"
 )
 
 type Translator interface {

@@ -4,7 +4,34 @@ app:
   runMode: "debug"
   enableProfile: true
 
+metric:
+  host: dd-graphite:8125
+
+redis:
+  version: "V1"
+  persist:
+      host: dd-redis:6379
+      password: ""
+
+etcd:
+  host: http://dd-etcd:2379
+  timeout: 5s
+  root: "/configs/envs/dev/17app"
+
+mongo:
+  host: dd-mongo:27017
+  scheme: mongodb
+  username: root
+  password: example
+  database: testDB
+  poolSizeMultiplier: 1
+  authDBName: admin
+
 component:
   banner:
-    host: echo-grpc.default.svc.cluster.local
-    port: 50051
+    host: banner-comp-svc:50051
+
+mysql:
+  uri: "media17:media17@tcp(dd-mysql:3306)"
+  dbname: "media17"
+  params: "charset=utf8mb4&timeout=10s"

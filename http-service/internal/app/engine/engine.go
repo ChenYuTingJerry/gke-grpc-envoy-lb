@@ -3,7 +3,7 @@ package engine
 import (
 	"net/http"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/app/router"
+	"http-service/internal/app/router"
 )
 
 type HttpEngine interface {

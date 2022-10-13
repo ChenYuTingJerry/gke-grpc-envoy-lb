@@ -1,9 +1,9 @@
-FROM golang:1.17 AS build_stage
+FROM golang:1.17.0 AS build_stage
 
 # setup environment
 ARG work_dir=/app
 RUN mkdir -p ${work_dir}/src
-ADD http-service ${work_dir}/src
+ADD . ${work_dir}/src
 WORKDIR ${work_dir}/src
 
 # In build process, makefile will copy your ${HOME}/.ssh into project folder as ssh_keys.

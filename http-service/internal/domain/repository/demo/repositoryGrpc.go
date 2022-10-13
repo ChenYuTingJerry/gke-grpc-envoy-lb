@@ -3,21 +3,21 @@ package demo
 import (
 	"context"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/echo-grpc/proto"
+	api "http-service/internal/common/client/proto"
 )
 
 type RepositoryGrpc struct {
-	client proto.EchoServiceClient
+	client api.EchoClient
 }
 
-func ProvideRepositoryGrpc(client proto.EchoServiceClient) Repository {
+func ProvideRepositoryGrpc(client api.EchoClient) Repository {
 	return &RepositoryGrpc{
 		client: client,
 	}
 }
 
 func (r RepositoryGrpc) GetDemo(ctx context.Context) (interface{}, error) {
-	req := &proto.EchoRequest{
+	req := &api.EchoRequest{
 		Content: "Aloha",
 	}
 	res, err := r.client.Echo(ctx, req)

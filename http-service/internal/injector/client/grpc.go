@@ -3,7 +3,7 @@ package client
 import (
 	"github.com/google/wire"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/client/grpc"
+	"http-service/internal/common/client"
 )
 
-var GrpcClientSet = wire.NewSet(grpc.NewEchoGrpcClient)
+var GrpcClientSet = wire.NewSet(client.NewEchoGrpcClient)

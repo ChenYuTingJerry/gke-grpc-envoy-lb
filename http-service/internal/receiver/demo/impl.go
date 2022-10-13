@@ -5,9 +5,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	http2 "github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/domain/model/http"
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/receiver"
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/translator/demo"
+	"http-service/internal/common/server"
+	"http-service/internal/receiver"
+	"http-service/internal/translator/demo"
 )
 
 type impl struct {
@@ -35,18 +35,18 @@ func (im *impl) GetRouteInfos() []receiver.RouteInfo {
 func (im *impl) getDemo(c *gin.Context) {
 	context, req, err := im.translator.ParseGetDemoReq(c)
 	if err != nil {
-		http2.ResFailResult(c, err.Code, err.ErrCode, err.Message)
+		server.ResFailResult(c, err.Code, err.ErrCode, err.Message)
 		return
 	}
 
 	result, err := im.translator.Process(context, req)
 	if err != nil {
-		http2.ResFailResult(c, err.Code, err.ErrCode, err.Message)
+		server.ResFailResult(c, err.Code, err.ErrCode, err.Message)
 		return
 	}
-	http2.ResSuccess(c, http.StatusOK, result)
+	server.ResSuccess(c, http.StatusOK, result)
 }
 
 func (im *impl) createDemo(c *gin.Context) {
-	http2.ResSuccess(c, http.StatusCreated, map[string]string{"good": "job"})
+	server.ResSuccess(c, http.StatusCreated, map[string]string{"good": "job"})
 }

@@ -6,8 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/wire"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/configs"
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/receiver"
+	"http-service/configs"
+	"http-service/internal/receiver"
 )
 
 var GinRouterSet = wire.NewSet(ProvideRouteV1, wire.Bind(new(Router), new(*GinRouter)))

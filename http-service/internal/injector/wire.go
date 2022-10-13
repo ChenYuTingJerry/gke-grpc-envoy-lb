@@ -6,9 +6,9 @@ package injector
 import (
 	"github.com/google/wire"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/injector/api"
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/injector/client"
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/injector/domain"
+	"http-service/internal/injector/api"
+	"http-service/internal/injector/client"
+	"http-service/internal/injector/domain"
 )
 
 func BuildInjector() (*Injector, func(), error) {

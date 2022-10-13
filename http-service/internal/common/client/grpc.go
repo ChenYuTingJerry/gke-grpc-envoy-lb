@@ -1,4 +1,4 @@
-package grpc
+package client
 
 import (
 	"crypto/tls"
@@ -6,12 +6,12 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/echo-grpc/proto"
+	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/configs"
+	"http-service/configs"
+	"http-service/internal/common/client/proto"
 )
 
 func loadTLSCredentials() (credentials.TransportCredentials, error) {
@@ -36,21 +36,20 @@ func loadTLSCredentials() (credentials.TransportCredentials, error) {
 	return credentials.NewTLS(config), nil
 }
 
-func NewEchoGrpcClient() (client proto.EchoServiceClient, close func(), err error) {
-	//tlsCredentials, err := loadTLSCredentials()
-	//if err != nil {
-	//	logrus.Fatal("cannot load TLS credentials: ", err)
-	//}
-	//opts := grpc.WithTransportCredentials(tlsCredentials)
-	opts := grpc.WithTransportCredentials(insecure.NewCredentials())
+func NewEchoGrpcClient() (client api.EchoClient, close func(), err error) {
+	tlsCredentials, err := loadTLSCredentials()
+	if err != nil {
+		logrus.Fatal("cannot load TLS credentials: ", err)
+	}
+	opts := grpc.WithTransportCredentials(tlsCredentials)
 	grpcAddr := configs.C.Component.Echo.Host
-	grpcAddr = fmt.Sprintf("%s:%s", configs.C.Component.Echo.Host, configs.C.Component.Echo.Port)
+	grpcAddr = "envoy.default.svc.cluster.local:443"
 	conn, err := grpc.Dial(grpcAddr, opts)
 	if err != nil {
 		return nil, func() {}, err
 	}
 
-	return proto.NewEchoServiceClient(conn), func() {
+	return api.NewEchoClient(conn), func() {
 		conn.Close()
 	}, nil
 }

@@ -3,7 +3,7 @@ package translator
 import (
 	"context"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/domain/model/errs"
+	"http-service/internal/lib/errs"
 )
 
 type Request interface {

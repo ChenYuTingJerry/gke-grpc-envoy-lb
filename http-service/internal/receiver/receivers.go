@@ -3,7 +3,7 @@ package receiver
 import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/middlewares/common"
+	"http-service/internal/common/middlewares/common"
 )
 
 type Receiver interface {

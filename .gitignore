@@ -1,2 +1,4 @@
 .idea
 ssh_keys
+cert.pem
+privkey.pem

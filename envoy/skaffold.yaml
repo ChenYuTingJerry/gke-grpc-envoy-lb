@@ -15,12 +15,7 @@
 apiVersion: skaffold/v2beta15
 kind: Config
 metadata:
-  name: http-service
-build:
-  artifacts:
-  - image: http-service
-  tagPolicy:
-    sha256: {}
+  name: envoy
 deploy:
   kubectl:
     manifests:

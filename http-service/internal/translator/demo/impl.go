@@ -6,10 +6,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/dispatcher/demo"
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/domain/model/errs"
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/translator"
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/translator/demo/requests"
+	"http-service/internal/dispatcher/demo"
+	"http-service/internal/lib/errs"
+	"http-service/internal/translator"
+	"http-service/internal/translator/demo/requests"
 )
 
 type impl struct {

@@ -8,8 +8,8 @@ import (
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
 
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/configs"
-	"github.com/jerry-yt-chen/gke-grpc-envoy-lb/http-service/internal/app/router"
+	"http-service/configs"
+	"http-service/internal/app/router"
 )
 
 type GinEngine struct {
