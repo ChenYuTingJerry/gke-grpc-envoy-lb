@@ -19,8 +19,6 @@ import (
 	"net"
 	"os"
 
-	"github.com/sirupsen/logrus"
-
 	"github.com/googlecloudplatform/grpc-gke-nlb-tutorial/echo-grpc/api"
 	"github.com/googlecloudplatform/grpc-gke-nlb-tutorial/echo-grpc/health"
 
@@ -43,7 +41,6 @@ func main() {
 	grpc_health_v1.RegisterHealthServer(grpcServer, &health.Server{})
 	reflection.Register(grpcServer)
 	log.Printf("Listening for Echo on port %s", port)
-	logrus.Info("Handling Echo request [%v] with context %v")
 	if err := grpcServer.Serve(listener); err != nil {
 		log.Fatalf("Failed to serve: %v", err)
 	}
