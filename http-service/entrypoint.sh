@@ -28,7 +28,7 @@ _term() {
 trap _term TERM
 
 # Run app with flags environment variable
-cmd="${WORK_DIR}/main"
+cmd="${WORK_DIR}/main --file ${CONFIG_FILE}"
 echo -----------------------------------------------------
 echo $(date)
 $cmd &

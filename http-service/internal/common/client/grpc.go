@@ -42,8 +42,8 @@ func NewEchoGrpcClient() (client api.EchoClient, close func(), err error) {
 		logrus.Fatal("cannot load TLS credentials: ", err)
 	}
 	opts := grpc.WithTransportCredentials(tlsCredentials)
+	//opts := grpc.WithTransportCredentials(insecure.NewCredentials())
 	grpcAddr := configs.C.Component.Echo.Host
-	grpcAddr = "envoy.default.svc.cluster.local:443"
 	conn, err := grpc.Dial(grpcAddr, opts)
 	if err != nil {
 		return nil, func() {}, err

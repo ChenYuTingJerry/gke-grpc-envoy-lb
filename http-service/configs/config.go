@@ -23,7 +23,6 @@ type Config struct {
 
 func InitConfigs() {
 	fmt.Println("Config init")
-	registerFlags()
 	flag.Parse()
 	if *filePath != "" {
 		fromFile()
